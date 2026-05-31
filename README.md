@@ -29,30 +29,23 @@ O **AccessAI** é um sistema de segurança e controle de portaria que utiliza vi
 ├── face_names.pickle           # Dicionário serializado que vincula o RA ao ID da IA
 ├── lbph_classifier.yml         # Arquivo de IA com os histogramas faciais treinados
 └── meuarquivo.txt              # Histórico persistente de acessos autorizados (Log de Portaria)
-
-
+``` 
 
 ## 🚀 Como Instalar e Executar (Passo a Passo Rápido)
 
 Siga as instruções abaixo para instalar as dependências diretamente no seu sistema e executar a portaria digital:
 
-### 1. Clonar o Repositório
-Abra o terminal (Prompt de Comando, PowerShell ou Terminal do Linux/Mac) e baixe o projeto:
-```bash
-git clone [https://github.com/emanu8lly/accessai.git](https://github.com/emanu8lly/accessai.git)
-cd accessai
-
 ### 2. Instalar as Dependências
 Instale todos os pacotes necessários rodando o comando abaixo:
 
-Bash
+```bash
 pip install -r requirements.txt
-
+```
 ### 3. Executar a Aplicação
 Certifique-se de que a sua webcam está conectada ao computador e inicialize a interface gráfica:
-
+```bash
 python app_interface.py
-
+```
 
 ### Fluxo de Teste (Primeiro Uso)
 Como o banco de dados inicial subirá vazio para um novo usuário, siga esta ordem para validar o sistema na sua máquina:
