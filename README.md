@@ -35,14 +35,15 @@ O **AccessAI** é um sistema de segurança e controle de portaria que utiliza vi
 
 Siga as instruções abaixo para instalar as dependências diretamente no seu sistema e executar a portaria digital:
 
-### 2. Instalar as Dependências
+### 1. Instalar as Dependências
 Instale todos os pacotes necessários rodando o comando abaixo:
 
 ```bash
 pip install -r requirements.txt
 ```
-### 3. Executar a Aplicação
+### 2. Executar a Aplicação
 Certifique-se de que a sua webcam está conectada ao computador e inicialize a interface gráfica:
+
 ```bash
 python app_interface.py
 ```
