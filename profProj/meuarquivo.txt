@@ -1,1 +1,165 @@
-31/05/2026 14:47:14-123456789 -> 93.1964
+31/05/2026 14:47:14-123456789 -> 93.1964[31/05/2026 15:27:45] Acesso Autorizado: 123456789
+[31/05/2026 15:27:46] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:46] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:46] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:46] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:46] Acesso Autorizado: 123456789
+[31/05/2026 15:27:46] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:46] Acesso Autorizado: 123456789
+[31/05/2026 15:27:48] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:48] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:48] Acesso Autorizado: 123456789
+[31/05/2026 15:27:48] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:48] Acesso Autorizado: 123456789
+[31/05/2026 15:27:50] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:50] Acesso Autorizado: 123456789
+[31/05/2026 15:27:50] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:50] Acesso Autorizado: 123456789
+[31/05/2026 15:27:51] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:51] Acesso Autorizado: 123456789
+[31/05/2026 15:27:53] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:54] Acesso Autorizado: 123456789
+[31/05/2026 15:27:54] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:54] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:54] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:55] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:55] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:55] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:55] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:55] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:56] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:56] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:56] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:57] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:58] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:58] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:58] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:58] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:58] Acesso Autorizado: 123456789
+[31/05/2026 15:27:58] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: 123456789
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:27:59] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:00] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:00] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:00] Acesso Autorizado: 123456789
+[31/05/2026 15:28:00] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:00] Acesso Autorizado: 123456789
+[31/05/2026 15:28:00] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:01] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:01] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:01] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:02] Acesso Autorizado: 123456789
+[31/05/2026 15:28:02] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:02] Acesso Autorizado: 123456789
+[31/05/2026 15:28:02] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:02] Acesso Autorizado: 123456789
+[31/05/2026 15:28:10] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:11] Acesso Autorizado: 123456789
+[31/05/2026 15:28:11] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:11] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:12] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:12] Acesso Autorizado: 123456789
+[31/05/2026 15:28:12] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:12] Acesso Autorizado: 123456789
+[31/05/2026 15:28:12] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:12] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:12] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:13] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:13] Acesso Autorizado: 123456789
+[31/05/2026 15:28:17] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:17] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:17] Acesso Autorizado: 123456789
+[31/05/2026 15:28:23] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:25] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:25] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:25] Acesso Autorizado: 123456789
+[31/05/2026 15:28:25] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:26] Acesso Autorizado: 123456789
+[31/05/2026 15:28:26] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:26] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:26] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:26] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:27] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:28:27] Acesso Autorizado: 123456789
+[31/05/2026 15:30:47] Acesso Autorizado: 123456789
+[31/05/2026 15:31:13] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:13] Acesso Autorizado: 123456789
+[31/05/2026 15:31:13] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:17] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:17] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:19] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:19] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:20] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:20] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:20] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:22] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:22] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:22] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:22] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:22] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:22] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:24] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:25] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:31:27] Acesso Autorizado: Nao Identificado
+[31/05/2026 15:32:01] Acesso Autorizado: jose
+[31/05/2026 15:32:01] Acesso Autorizado: 123456789
+[31/05/2026 15:32:01] Acesso Autorizado: jose
+[31/05/2026 15:32:03] Acesso Autorizado: 123456789
+[31/05/2026 15:32:03] Acesso Autorizado: jose
+[31/05/2026 15:32:13] Acesso Autorizado: jose
+[31/05/2026 15:34:43] Acesso Autorizado: jose
+[31/05/2026 15:34:44] Acesso Autorizado: 123456789
+[31/05/2026 15:34:44] Acesso Autorizado: jose
+[31/05/2026 15:34:50] Acesso Autorizado: jose
+[31/05/2026 15:34:55] Acesso Autorizado: 123456789
+[31/05/2026 15:34:55] Acesso Autorizado: jose
+[31/05/2026 15:34:56] Acesso Autorizado: 123456789
+[31/05/2026 15:34:56] Acesso Autorizado: jose
+[31/05/2026 15:34:56] Acesso Autorizado: 123456789
+[31/05/2026 15:34:56] Acesso Autorizado: jose
+[31/05/2026 15:34:56] Acesso Autorizado: 123456789
+[31/05/2026 15:34:57] Acesso Autorizado: jose
+[31/05/2026 15:34:57] Acesso Autorizado: 123456789
+[31/05/2026 15:34:57] Acesso Autorizado: jose
+[31/05/2026 15:34:57] Acesso Autorizado: 123456789
+[31/05/2026 15:34:58] Acesso Autorizado: jose
+[31/05/2026 15:34:58] Acesso Autorizado: 123456789
+[31/05/2026 15:34:58] Acesso Autorizado: jose
+[31/05/2026 15:34:58] Acesso Autorizado: 123456789
+[31/05/2026 15:34:58] Acesso Autorizado: jose
+[31/05/2026 15:34:58] Acesso Autorizado: 123456789
+[31/05/2026 15:34:59] Acesso Autorizado: jose
+[31/05/2026 15:34:59] Acesso Autorizado: 123456789
+[31/05/2026 15:34:59] Acesso Autorizado: jose
+[31/05/2026 15:34:59] Acesso Autorizado: 123456789
+[31/05/2026 15:34:59] Acesso Autorizado: jose
+[31/05/2026 15:35:00] Acesso Autorizado: 123456789
+[31/05/2026 15:35:00] Acesso Autorizado: jose
+[31/05/2026 15:35:00] Acesso Autorizado: 123456789
+[31/05/2026 15:35:00] Acesso Autorizado: jose
+[31/05/2026 15:35:01] Acesso Autorizado: 123456789
+[31/05/2026 15:35:01] Acesso Autorizado: jose
+[31/05/2026 15:39:14] Acesso Autorizado: 12345678
+[31/05/2026 15:39:15] Acesso Autorizado: 123456789
+[31/05/2026 15:39:17] Acesso Autorizado: 12345678
