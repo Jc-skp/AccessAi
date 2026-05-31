@@ -29,3 +29,44 @@ O **AccessAI** é um sistema de segurança e controle de portaria que utiliza vi
 ├── face_names.pickle           # Dicionário serializado que vincula o RA ao ID da IA
 ├── lbph_classifier.yml         # Arquivo de IA com os histogramas faciais treinados
 └── meuarquivo.txt              # Histórico persistente de acessos autorizados (Log de Portaria)
+
+
+
+## 🚀 Como Instalar e Executar (Passo a Passo Rápido)
+
+Siga as instruções abaixo para instalar as dependências diretamente no seu sistema e executar a portaria digital:
+
+### 1. Clonar o Repositório
+Abra o terminal (Prompt de Comando, PowerShell ou Terminal do Linux/Mac) e baixe o projeto:
+```bash
+git clone [https://github.com/emanu8lly/accessai.git](https://github.com/emanu8lly/accessai.git)
+cd accessai
+
+### 2. Instalar as Dependências
+Instale todos os pacotes necessários rodando o comando abaixo:
+
+Bash
+pip install -r requirements.txt
+
+### 3. Executar a Aplicação
+Certifique-se de que a sua webcam está conectada ao computador e inicialize a interface gráfica:
+
+python app_interface.py
+
+
+### Fluxo de Teste (Primeiro Uso)
+Como o banco de dados inicial subirá vazio para um novo usuário, siga esta ordem para validar o sistema na sua máquina:
+
+Na coluna esquerda da interface, clique no botão "Modo: Capturar Rosto".
+
+No painel direito, insira um RA (apenas números) e o Nome Completo.
+
+Clique em "Iniciar Fluxo de Registro" e olhe fixamente para a webcam. O sistema capturará 20 amostras da sua face automaticamente.
+
+Clique no botão amarelo "Sincronizar Banco / Treinar IA" e aguarde alguns segundos até que o status mude para "IA Treinada com Sucesso!".
+
+Pronto! O sistema voltará sozinho para o modo de portaria. Ao olhar para a câmera:
+
+Se for você, o quadrado ficará Verde-Água exibindo o seu RA, e o arquivo meuarquivo.txt registrará o seu acesso.
+
+Se for outra pessoa não cadastrada, o quadrado ficará Vermelho com a mensagem "Desconhecido".
