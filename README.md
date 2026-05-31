@@ -31,7 +31,7 @@ O **AccessAI** é um sistema de segurança e controle de portaria que utiliza vi
 └── meuarquivo.txt              # Histórico persistente de acessos autorizados (Log de Portaria)
 ``` 
 
-## 🚀 Como Instalar e Executar (Passo a Passo Rápido)
+## Como Instalar e Executar (Passo a Passo Rápido)
 
 Siga as instruções abaixo para instalar as dependências diretamente no seu sistema e executar a portaria digital:
 
