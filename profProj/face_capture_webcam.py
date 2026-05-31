@@ -11,7 +11,7 @@ from helper_functions import resize_video
 detector = "haarcascade"  # we suggest to keep SSD for more accurate detections
 max_width = 800           # leave None if you don't want to resize and want to keep the original size of the video stream frame
 
-max_samples = 10    # to control how many photos we'll be taking
+max_samples = 20    # to control how many photos we'll be taking
 starting_sample_number = 0  # default=0, but if you already have taken photos for the same person AND you don't want to overwrite them you need to choose a number higher than the last number of samples.
                              # e.g. i took 20 photos and want to take more but keep the others, so I need to change from 0 to 21
 
