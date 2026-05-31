@@ -29,7 +29,30 @@ O **AccessAI** é um sistema de segurança e controle de portaria que utiliza vi
 ├── face_names.pickle           # Dicionário serializado que vincula o RA ao ID da IA
 ├── lbph_classifier.yml         # Arquivo de IA com os histogramas faciais treinados
 └── meuarquivo.txt              # Histórico persistente de acessos autorizados (Log de Portaria)
-``` 
+```
+
+## Fluxo de Execução Unificado pela Interface Gráfica
+O ciclo de vida da aplicação dentro da interface atual executa as seguintes etapas:
+
+```text
+
+[ Usuário digita RA e Nome ] -> [ Botão Iniciar Registro ] -> [ Thread de Captura salva 20 fotos no Dataset ]
+                                                                       |
+[ Interface libera e pisca Alerta ] <- [ Concluído ] <-----------------+
+         |
+[ Botão Sincronizar/Treinar ] -> [ Dispara Subprocesso train_recognizers.py em Background ]
+                                                                       |
+[ Interface Recarrega o .yml e o .pickle atualizados ] <---------------+
+         |
+[ Modo Identificar Ativo ] -> [ Câmera detecta rosto ] -> [ Confiança < 120? ]
+                                                                 |
+            +----------------- SIM ------------------------------+------------------- NÃO -----------------+
+            |                                                                                                 |
+[ Quadrado VERDE ÁGUA na tela ]                                                                     [ Quadrado VERMELHO na tela ]
+[ Exibe RA e Score de Proximidade ]                                                                 [ Exibe texto: Desconhecido ]
+[ Grava Linha de Log timestamped em meuarquivo.txt ]
+
+```
 
 ## Como Instalar e Executar (Passo a Passo Rápido)
 
