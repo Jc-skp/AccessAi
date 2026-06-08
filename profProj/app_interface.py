@@ -1,10 +1,11 @@
 import tkinter as tk
 import customtkinter as ctk
 import cv2
-import threading
 import os
 import pickle
 import re
+import shutil
+import threading
 from datetime import datetime
 from PIL import Image, ImageTk
 
@@ -112,6 +113,9 @@ class AccessAIApp(ctk.CTk):
         self.btn_treinar = ctk.CTkButton(frame_direita, text="Sincronizar Banco / Treinar IA", fg_color="#f59e0b", text_color="#101114", hover_color="#d97706", width=360, height=40, command=self.fluxo_treinamento)
         self.btn_treinar.pack(padx=20, pady=10)
 
+        self.btn_excluir = ctk.CTkButton(frame_direita, text="Excluir Usuário (Pelo RA)", fg_color="#ef4444", hover_color="#b91c1c", width=360, height=40, command=self.excluir_usuario)
+        self.btn_excluir.pack(padx=20, pady=10)
+
         self.frame_status = ctk.CTkFrame(frame_direita, fg_color="#1a1c23", height=100)
         self.frame_status.pack(fill="x", padx=20, pady=20, side="bottom")
         
@@ -163,11 +167,85 @@ class AccessAIApp(ctk.CTk):
             if os.path.exists("lbph_classifier.yml"):
                 self.reconhecedor.read("lbph_classifier.yml")
             self.carregar_banco_nomes()
+            self.after(0, self.pos_treinamento_callback)
                     
             self.lbl_status.configure(text="IA Treinada com Sucesso!\nNovos usuários integrados.", text_color="#10b981")
             self.ativar_modo_identificar()
 
         threading.Thread(target=rodar_treino).start()
+
+    def pos_treinamento_callback(self):
+        try:
+            # 1. Recria o objeto do classificador do zero (limpa o cache da memória RAM antiga)
+            self.reconhecedor = cv2.face.LBPHFaceRecognizer_create()
+            
+            # 2. Lê o arquivo atualizado que o script externo acabou de gerar
+            if os.path.exists("lbph_classifier.yml"):
+                self.reconhecedor.read("lbph_classifier.yml")
+            
+            # 3. Recarrega o dicionário de nomes/RAs do arquivo pickle
+            self.carregar_banco_nomes()
+            
+            # 4. Reseta o ID antigo para forçar o OpenCV a reidentificar quem está na câmera
+            self.ultimo_id_gravado = None
+            
+            # 5. Atualiza a interface
+            self.lbl_status.configure(text="IA Treinada com Sucesso!\nNovos usuários integrados.", text_color="#10b981")
+            self.ativar_modo_identificar()
+        except Exception as e:
+            print(f"Erro ao atualizar pesos da IA em tempo real: {e}")
+            self.lbl_status.configure(text="Erro ao atualizar banco lógico da IA.", text_color="#ef4444")
+
+    def excluir_usuario(self):
+        """Remove o usuário completamente do sistema de arquivos, dicionário e modelos."""
+        ra_para_deletar = self.input_ra.get().strip()
+        
+        if not ra_para_deletar:
+            self.lbl_status.configure(text="ERRO: Digite um RA válido para exclusão!", text_color="#ef4444")
+            return
+
+        # Definição dos caminhos das pastas baseados no RA informado
+        pasta_dataset = f"dataset/{ra_para_deletar}"
+        pasta_dataset_full = f"dataset_full/{ra_para_deletar}"
+
+        modificou_arquivos = False
+
+        # 1. Remoção dos diretórios físicos de fotos
+        if os.path.exists(pasta_dataset):
+            shutil.rmtree(pasta_dataset)
+            modificou_arquivos = True
+        if os.path.exists(pasta_dataset_full):
+            shutil.rmtree(pasta_dataset_full)
+            modificou_arquivos = True
+
+        # 2. Remoção do registro do arquivo pickle
+        if os.path.exists("face_names.pickle"):
+            try:
+                with open("face_names.pickle", "rb") as f:
+                    face_names = pickle.load(f)
+                
+                if ra_para_deletar in face_names:
+                    del face_names[ra_para_deletar]
+                    modificou_arquivos = True
+                
+                with open("face_names.pickle", "wb") as f:
+                    pickle.dump(face_names, f)
+                    
+                # Sincroniza o dicionário em memória da aplicação
+                self.nomes_usuarios = face_names
+            except Exception as e:
+                print(f"Erro ao ler/escrever no arquivo pickle: {e}")
+
+        # 3. Feedback e Retreino Automático da Inteligência Artificial
+        if modificou_arquivos:
+            self.lbl_status.configure(
+                text=f"Usuário {ra_para_deletar} removido!\nSincronizando e atualizando IA...", 
+                text_color="#f59e0b"
+            )
+            # Aciona automaticamente o seu método de treinamento para limpar os pesos do modelo .yml
+            self.fluxo_treinamento()
+        else:
+            self.lbl_status.configure(text="RA não localizado no banco local.", text_color="#ef4444")
 
     def registrar_log_acesso(self, nome_ra):
         agora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -176,87 +254,91 @@ class AccessAIApp(ctk.CTk):
             f.write(linha_log)
 
     def iniciar_webcam(self):
-        self.camera = cv2.VideoCapture(0)
-        self.camera_rodando = True
+        if self.camera is None or not self.camera.isOpened():
+            self.camera = cv2.VideoCapture(0)
         
-        def loop_video():
-            while self.camera_rodando:
-                ret, frame = self.camera.read()
-                if not ret:
-                    continue
+        self.camera_rodando = True
+        self.atualizar_frame()
+        
+    def atualizar_frame(self):
+        if not self.camera_rodando or self.camera is None:
+            return
 
-                frame = cv2.flip(frame, 1)
-                cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                faces = self.face_cascade.detectMultiScale(cinza, 1.3, 5)
+        ret, frame = self.camera.read()
+        if ret:
+            frame = cv2.flip(frame, 1)
+            cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            
+            faces = self.face_cascade.detectMultiScale(cinza, scaleFactor=1.3, minNeighbors=5)
 
-                for (x, y, w, h) in faces:
-                    # Lógica de processamento no Modo de Identificação
-                    if self.modo_atual == "Identificar" and len(self.nomes_usuarios) > 0:
-                        face_roi = cv2.resize(cinza[y:y+h, x:x+w], (90, 120))
-                        try:
-                            id_previsto, confianca = self.reconhecedor.predict(face_roi)
+            for (x, y, w, h) in faces:
+                # Lógica de processamento no Modo de Identificação
+                if self.modo_atual == "Identificar" and len(self.nomes_usuarios) > 0:
+                    face_roi = cv2.resize(cinza[y:y+h, x:x+w], (90, 120))
+                    try:
+                        id_previsto, confianca = self.reconhecedor.predict(face_roi)
+                        
+                        nome_detectado = None
+                        for ra_chave, id_val in self.nomes_usuarios.items():
+                            if id_val == id_previsto:
+                                nome_detectado = ra_chave
+                                break
+
+                        # Verificação de Limiar (Confiança menor que o limite = ALUNO RECONHECIDO)
+                        if confianca < self.limiar_confianca and nome_detectado is not None: 
+                            # QUADRADO VERDE ÁGUA (Sucesso)
+                            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 150), 2)
+                            texto = f"RA: {nome_detectado} ({int(confianca)})"
+                            cv2.putText(frame, texto, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 150), 2)
                             
-                            nome_detectado = None
-                            for ra_chave, id_val in self.nomes_usuarios.items():
-                                if id_val == id_previsto:
-                                    nome_detectado = ra_chave
-                                    break
-
-                            # Verificação de Limiar (Confiança menor que o limite = ALUNO RECONHECIDO)
-                            if confianca < self.limiar_confianca and nome_detectado is not None: 
-                                # QUADRADO VERDE ÁGUA (Sucesso)
-                                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 150), 2)
-                                texto = f"RA: {nome_detectado} ({int(confianca)})"
-                                cv2.putText(frame, texto, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 150), 2)
-                                
-                                # Salva o log persistente txt se mudar o ID detectado na frente da câmera
-                                if self.ultimo_id_gravado != id_previsto:
-                                    self.ultimo_id_gravado = id_previsto
-                                    self.registrar_log_acesso(nome_detectado)
-                            else:
-                                # QUADRADO VERMELHO (Desconhecido)
-                                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
-                                cv2.putText(frame, "Desconhecido", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
-                                self.ultimo_id_gravado = None
-                        except Exception as e:
-                            # Caso dê erro na predição, desenha quadrado vermelho preventivo
+                            # Salva o log persistente txt se mudar o ID detectado na frente da câmera
+                            if self.ultimo_id_gravado != id_previsto:
+                                self.ultimo_id_gravado = id_previsto
+                                self.registrar_log_acesso(nome_detectado)
+                        else:
+                            # QUADRADO VERMELHO (Desconhecido)
                             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
                             cv2.putText(frame, "Desconhecido", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+                            self.ultimo_id_gravado = None
+                    except Exception as e:
+                        # Caso dê erro na predição, desenha quadrado vermelho preventivo
+                        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
+                        cv2.putText(frame, "Desconhecido", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
-                    # Lógica no Modo de Cadastro (Captura de fotos)
-                    elif self.modo_atual == "Cadastrar" and self.contagem_fotos < 20 and self.ra_cadastro != "":
-                        self.contagem_fotos += 1
-                        face_roi = cv2.resize(cinza[y:y+h, x:x+w], (90, 120))
-                        
-                        # Quadrado Laranja para sinalizar gravação
-                        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 165, 255), 2)
-                        
-                        image_name = f"{self.nome_cadastro}.{self.contagem_fotos}.jpg"
-                        cv2.imwrite(f"{self.caminho_salvamento}/{image_name}", face_roi)
-                        cv2.imwrite(f"{self.caminho_salvamento_full}/{image_name}", frame)
-                        
-                        cv2.putText(frame, f"Capturando: {self.contagem_fotos}/20", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 165, 255), 2)
-
-                        if self.contagem_fotos >= 20:
-                            self.ra_cadastro = ""
-                            self.lbl_status.configure(text="Captura Concluída!\nClique em 'Sincronizar Banco / Treinar IA'.", text_color="#f59e0b")
+                # Lógica no Modo de Cadastro (Captura de fotos)
+                elif self.modo_atual == "Cadastrar" and self.contagem_fotos < 20 and self.ra_cadastro != "":
+                    self.contagem_fotos += 1
+                    face_roi = cv2.resize(cinza[y:y+h, x:x+w], (90, 120))
                     
-                    else:
-                        # Cor neutra padrão se o banco estiver vazio
-                        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 150), 2)
+                    # Quadrado Laranja para sinalizar gravação
+                    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 165, 255), 2)
+                    
+                    image_name = f"{self.nome_cadastro}.{self.contagem_fotos}.jpg"
+                    cv2.imwrite(f"{self.caminho_salvamento}/{image_name}", face_roi)
+                    cv2.imwrite(f"{self.caminho_salvamento_full}/{image_name}", frame)
+                    
+                    cv2.putText(frame, f"Capturando: {self.contagem_fotos}/20", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 165, 255), 2)
 
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                img_pil = Image.fromarray(frame_rgb)
-                img_pil = img_pil.resize((640, 400))
-                img_tk = ImageTk.PhotoImage(image=img_pil)
+                    if self.contagem_fotos >= 20:
+                        self.ra_cadastro = ""
+                        self.lbl_status.configure(text="Captura Concluída!\nClique em 'Sincronizar Banco / Treinar IA'.", text_color="#f59e0b")
+                
+                else:
+                    # Cor neutra padrão se o banco estiver vazio
+                    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 150), 2)
 
-                try:
-                    self.lbl_video.img_tk = img_tk
-                    self.lbl_video.configure(image=img_tk)
-                except:
-                    break
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            img_pil = Image.fromarray(frame_rgb)
+            img_pil = img_pil.resize((640, 480))
+            img_tk = ImageTk.PhotoImage(image=img_pil)
 
-        threading.Thread(target=loop_video, daemon=True).start()
+            try:
+                self.lbl_video.img_tk = img_tk
+                self.lbl_video.configure(image=img_tk)
+            except:
+                return
+
+        self.after(15, self.atualizar_frame)
 
     def destroy(self):
         self.camera_rodando = False
